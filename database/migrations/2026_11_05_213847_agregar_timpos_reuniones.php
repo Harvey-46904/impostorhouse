@@ -6,30 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-         Schema::table('reuniones', function (Blueprint $table) {
-           
-            
-            $table->timestamp('iniciada_at')->nullable();
-            $table->timestamp('votacion_inicia_at')->nullable();
-            $table->timestamp('votacion_finaliza_at')->nullable();
-            $table->timestamp('hablar_finaliza_at')->nullable();
-            $table->timestamp('finalizada_at')->nullable();
-        });
+        if (!Schema::hasColumn('reuniones', 'hablar_finaliza_at')) {
+            Schema::table('reuniones', function (Blueprint $table) {
+                $table->timestamp('hablar_finaliza_at')->nullable();
+            });
+        }
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-         Schema::table('reuniones', function (Blueprint $table) {
-            $table->dropColumn(['iniciada_at', 'votacion_inicia_at', 'votacion_finaliza_at', 'hablar_finaliza_at', 'finalizada_at']);
-        });
+        if (Schema::hasColumn('reuniones', 'hablar_finaliza_at')) {
+            Schema::table('reuniones', function (Blueprint $table) {
+                $table->dropColumn('hablar_finaliza_at');
+            });
+        }
     }
 };
