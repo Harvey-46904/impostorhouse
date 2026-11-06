@@ -1,0 +1,335 @@
+    .btn-game {
+        background: linear-gradient(90deg, #bd19ff, #6815ff);
+        color: white;
+        border: 2px solid #d78aff;
+        border-radius: 50px;
+        padding: 14px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 0 15px #a020ff;
+    }
+
+    .btn-game:hover {
+        background: linear-gradient(90deg, #d02cff, #812aff);
+        color: white;
+        box-shadow: 0 0 25px #bd19ff;
+    }
+
+    .bg-game {
+   background: linear-gradient(180deg, #020c2b, #010207);
+}
+.bg-formularios {
+    background: linear-gradient(180deg, #0d1443, #0d1443);
+}
+
+/* TITULOS */
+.titulo {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #8b19ff;
+    margin-bottom: 15px;
+}
+
+.titulo span {
+    color: #bd25ff;
+}
+
+/* SUBTITULOS */
+.subtitulo {
+    color: #d8dfff;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* TEXTOS NORMALES */
+.texto {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+/* TEXTOS SECUNDARIOS */
+.texto-secundario {
+    color: #aebaff;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+/* TEXTO DESTACADO */
+.texto-destacado {
+    color: #00c8ff;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00c8ff;
+}
+.personaje {
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.personaje img {
+    width: 100%;
+    display: block;
+}
+
+.personaje:hover {
+    transform: scale(1.05);
+}
+
+/* Personaje seleccionado */
+.personaje.seleccionado {
+    border: 2px solid #bd25ff;
+    box-shadow: 0 0 15px #a020ff;
+    background-color: rgba(139, 25, 255, 0.15);
+}
+
+.rol-oculto {
+    width: 180px;
+    height: 180px;
+    border: 3px solid #a020ff;
+    border-radius: 20px;
+    background: #0a1235;
+    color: #bd25ff;
+    font-size: 100px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 15px #bd25ff;
+    box-shadow: 0 0 20px #8b19ff;
+}
+
+.contenedor-camara {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #bd25ff;
+    border-radius: 15px;
+    background: #050b27;
+    box-shadow: 0 0 15px #8b19ff;
+}
+
+#videoCamara {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+#canvasFoto {
+    display: block;
+    width: 100%;
+}
+
+.cuenta-regresiva {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 110px;
+    height: 110px;
+
+    border: 5px solid #a020ff;
+    border-right-color: #00c8ff;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 65px;
+    font-weight: bold;
+    color: white;
+
+    text-shadow: 0 0 15px #8b19ff;
+    background: #080b2b55;
+}
+.mapa-contenedor {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.imagen-mapa {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.marcador-mapa {
+    position: absolute;
+    width: 35px !important;
+    height: 35px !important;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.tarea-completada {
+    background: #164b35 !important;
+    border: 1px solid #28a745;
+    opacity: 0.85;
+}
+
+.tarea-completada .nombre-tarea {
+    color: #a9ffc9 !important;
+}
+.marcador-completado {
+    filter: brightness(0) saturate(100%)
+            invert(49%) sepia(88%) saturate(450%)
+            hue-rotate(90deg) brightness(105%);
+}
+/* PANEL DE ACCIONES */
+.panel-acciones {
+    background: #171b2e;
+    border: 1px solid #303653;
+    border-radius: 16px;
+    padding: 18px;
+    color: white;
+}
+
+.panel-acciones-titulo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.panel-acciones-titulo span {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.panel-acciones-titulo small {
+    color: #929bb9;
+    margin-top: 4px;
+}
+
+/* DISTRIBUCIÓN DE BOTONES */
+.acciones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.accion-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.accion-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+.accion-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.accion-icono {
+    min-width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 19px;
+}
+
+.accion-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.accion-info strong {
+    font-size: 13px;
+}
+
+.accion-info small {
+    font-size: 11px;
+    opacity: .75;
+}
+
+/* COLORES */
+.accion-muerte {
+    background: #39232f;
+    border-color: #74394c;
+}
+
+.accion-muerte .accion-icono {
+    background: #74394c;
+}
+
+.accion-reporte {
+    background: #393026;
+    border-color: #80602e;
+}
+
+.accion-reporte .accion-icono {
+    background: #80602e;
+}
+
+.accion-reunion {
+    background: #252f49;
+    border-color: #405b91;
+}
+
+.accion-reunion .accion-icono {
+    background: #405b91;
+}
+
+/* RESPONSIVE */
+@media (max-width: 650px) {
+    .acciones-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .accion-btn {
+        padding: 13px;
+    }
+}
+.jugador-voto {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #252f49;
+    color: white;
+    border: 2px solid #405b91;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.jugador-voto:hover:not(:disabled) {
+    background: #405b91;
+}
+
+.jugador-voto.seleccionado {
+    background: #315e45;
+    border-color: #48c77a;
+}
+
+.jugador-voto:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
