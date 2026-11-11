@@ -42,6 +42,6 @@ class ReporteSalaController extends Controller
         ->orderBy('jugadors.nombre')
         ->get();
 
-    return view('admin.reportes.detalleS', compact('sala', 'tareas'));
+    return view('admin.reportes.detalles', compact('sala', 'tareas'));
 }
 }
