@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use TCG\Voyager\Facades\Voyager;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Voyager::addAction(\App\Actions\Reportespdf::class);//
     }
 }

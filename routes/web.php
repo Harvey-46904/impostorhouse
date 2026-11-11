@@ -4,6 +4,8 @@ use App\Events\MensajePrueba;
 use App\Http\Controllers\Admin\LugarController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\SalaController;
+use App\Http\Controllers\Admin\ReporteSalaController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/emitir-prueba', function () {
@@ -37,9 +39,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/lugares', [LugarController::class, 'index'])
         ->name('voyager.lugares.index');
-
+    Route::get('/reportes', [ReporteSalaController::class, 'index'])
+        ->name('voyager.reportes.index');
     Route::post('/lugares/guardar', [LugarController::class, 'guardar'])
         ->name('voyager.lugares.guardar');
+    Route::get('/reporte-salas/{id}', [ReporteSalaController::class, 'tareasSala'])
+    ->name('voyager.reporte-salas.detalle');
 
 });
 
