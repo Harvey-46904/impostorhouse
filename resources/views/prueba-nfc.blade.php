@@ -130,33 +130,41 @@
     }
 
     function readRecord(record) {
-        if (!record.data) return {
+    if (!record.data) {
+        return {
             tipo: record.recordType,
             contenido: 'Sin contenido'
         };
-
-        const bytes = new Uint8Array(
-            record.data.buffer,
-            record.data.byteOffset,
-            record.data.byteLength
-        );
-
-        let content = new TextDecoder().decode(bytes);
-
-        if (record.recordType === 'text' && bytes.length > 0) {
-            const languageLength = bytes[0] & 0x3f;
-            content = new TextDecoder().decode(
-                bytes.slice(1 + languageLength)
-            );
-        }
-
-        return {
-            tipo: record.recordType,
-            identificador: record.id || 'No disponible',
-            contenido: content,
-            hexadecimal: bytesToHex(bytes)
-        };
     }
+
+    const bytes = new Uint8Array(
+        record.data.buffer,
+        record.data.byteOffset,
+        record.data.byteLength
+    );
+
+    let content;
+
+    if (record.recordType === 'text' && bytes.length > 0) {
+        const languageLength = bytes[0] & 0x3f;
+        const isUtf16 = (bytes[0] & 0x80) !== 0;
+
+        const textBytes = bytes.slice(1 + languageLength);
+
+        content = new TextDecoder(
+            isUtf16 ? 'utf-16' : 'utf-8'
+        ).decode(textBytes);
+    } else {
+        content = new TextDecoder().decode(bytes);
+    }
+
+    return {
+        tipo: record.recordType,
+        identificador: record.id || 'No disponible',
+        contenido: content,
+        hexadecimal: bytesToHex(bytes)
+    };
+}
 
     startButton.addEventListener('click', async () => {
 
