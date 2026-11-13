@@ -61,3 +61,6 @@ Route::post('/reunion/{id}/votar', [SalaController::class, 'votar'])
 
 Route::post('/reunion/{id}/cerrar-votacion', [SalaController::class, 'cerrarVotacion'])
     ->name('reunion.cerrarVotacion');
+
+
+Route::view('/prueba-nfc', 'prueba-nfc')->name('prueba.nfc');
