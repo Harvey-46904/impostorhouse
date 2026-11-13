@@ -64,3 +64,5 @@ Route::post('/reunion/{id}/cerrar-votacion', [SalaController::class, 'cerrarVota
 
 
 Route::view('/prueba-nfc', 'prueba-nfc')->name('prueba.nfc');
+
+Route::post('/buscar-jugador-tag', [ReporteSalaController::class, 'jugadormuerto']);

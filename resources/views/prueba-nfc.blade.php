@@ -179,25 +179,68 @@
 
             showStatus('Lector activo. Acerca el celular al TAG.');
 
-            ndef.onreading = (event) => {
+            ndef.onreading = async (event) => {
 
-                const records = event.message.records.map(readRecord);
+    const records = event.message.records.map(readRecord);
 
-                const result = {
-                    resultado: 'TAG NFC DETECTADO',
-                    serialNumber: event.serialNumber || 'No proporcionado',
-                    registros: records
-                };
+    console.log('TAG detectado:', records);
 
-                resultBox.innerHTML = `
-                    <strong class="success">¡TAG DETECTADO!</strong>
-                    <pre>${JSON.stringify(result, null, 2)}</pre>
-                `;
+    const registroTexto = records.find(
+        record => record.tipo === 'text'
+    );
 
-                showStatus('¡Lectura NFC exitosa!', 'success');
+    if (!registroTexto || !registroTexto.contenido.trim()) {
+        showStatus('El TAG no contiene un identificador válido.', 'error');
+        return;
+    }
 
-                console.log('NFC detectado:', result);
-            };
+    const tagid = registroTexto.contenido.trim();
+
+    showStatus('Buscando jugador...', '');
+
+    try {
+        const response = await fetch('/buscar-jugador-tag', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector(
+                    'meta[name="csrf-token"]'
+                ).content
+            },
+            body: JSON.stringify({ tagid })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Jugador no encontrado');
+        }
+
+        resultBox.innerHTML = `
+            <strong class="success">¡JUGADOR IDENTIFICADO!</strong>
+            <p>Nombre: ${escapeHtml(data.jugador.nombre)}</p>
+            <p>ID: ${data.jugador.id}</p>
+            <p>TAG: ${escapeHtml(data.jugador.tagid)}</p>
+        `;
+
+        showStatus('Jugador identificado correctamente.', 'success');
+
+    } catch (error) {
+        resultBox.textContent = error.message;
+        showStatus(error.message, 'error');
+    }
+};
+
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    })[char]);
+}
 
             ndef.onreadingerror = () => {
                 showStatus(
