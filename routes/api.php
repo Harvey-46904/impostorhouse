@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Events\SignalReceived;
+use App\Events\SignalReceivedAviator;
 
 Route::post('/signals', function (Request $request) {
 
@@ -11,7 +11,7 @@ Route::post('/signals', function (Request $request) {
         'status' => 'required|string',
     ]);
 
-    event(new SignalReceived($signal));
+    event(new SignalReceivedAviator($signal));
 
     return response()->json([
         'ok' => true,
