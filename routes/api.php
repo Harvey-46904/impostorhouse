@@ -19,7 +19,7 @@ Route::post('/signals', function (Request $request) {
     // 2. Enviar comando al endpoint manual
     $payload = [
     'commands' => [
-        [
+       /* [
             'name' => 'precio aviator 500',
             'type' => 'slaveapp',
             'positionxy' => '160,1270',
@@ -34,11 +34,11 @@ Route::post('/signals', function (Request $request) {
             'history' => null,
             'btnmoney' => null,
             'btnplay' => null,
-        ],
+        ],*/
         [
             'name' => 'play aviator',
             'type' => 'slaveapp',
-            'positionxy' => '726,1270',
+            'positionxy' => '726,1180',
             'history' => null,
             'btnmoney' => null,
             'btnplay' => null,
